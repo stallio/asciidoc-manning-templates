@@ -1,0 +1,33 @@
+<%#encoding:UTF-8%><<%= (tag_name = title? ? 'table' : 'informaltable') %> id="<%= id %>" >
+  <title><%= title %></title>
+  <% if attr? :width %>
+  <?dbhtml table-width="<%= attr :width %>"?>
+  <?dbfo table-width="<%= attr :width %>"?>
+  <?dblatex table-width="<%= attr :width %>"?>
+  <% end %>
+  <tgroup cols="<%= attr :colcount %>">
+    <% @columns.each do |col| %>
+    <% end %>
+    <% [:head, :foot, :body].select {|tblsec| !rows[tblsec].empty? }.each do |tblsec| %>
+    <t<%= tblsec %>>
+      <% @rows[tblsec].each do |row| %>
+      <row>
+        <% row.each do |cell| %>
+        <entry><%
+        cell_content = ''
+        if tblsec == :head %><% cell_content = "<para>#{cell.text}</para>" %><%
+        else %><%
+        case (cell.attr :style)
+          when :asciidoc %><% cell_content = cell.content %><%
+          when :verse %><% cell_content = %(<literallayout>\#{template.preserve_endlines(cell.text, self)}</literallayout>) %><%
+          when :literal %><% cell_content = %(<literallayout class="monospaced">\#{template.preserve_endlines(cell.text, self)}</literallayout>) %><%
+          when :header %><% cell.content.each do |text| %><% cell_content = %(\#{cell_content\}<para><emphasis role="strong">\#{text}</emphasis></para>) %><% end %><%
+          else %><% cell.content.each do |text| %><% cell_content = "#{cell_content}<para>#{text}</para>" %><% end %><%
+        %><% end %><% end%><%= (@document.attr? 'cellbgcolor') ? %(<?dbfo bgcolor="\#{@document.attr 'cellbgcolor'}"?>) : nil %><%= cell_content %></entry>
+        <% end %>
+      </row>
+      <% end %>
+    </t<%= tblsec %>>
+    <% end %>
+  </tgroup>
+</<%= tag_name %>>
