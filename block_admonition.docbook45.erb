@@ -1,4 +1,4 @@
 <%#encoding:UTF-8%><<%= attr :name %><%= @id && %( id="#{@id}") %>>
-<%= title? ? %(<title>#{@title}</title>) : nil %>
-<%= content.chomp %>
+<%= title? ? %(<title>#{@title}</title>) : %(<title>TITLE NEEDED</title>) %>
+<%= blocks? ? content.chomp : "<para>#{content.chomp}</para>" %>
 </<%= attr :name %>>
