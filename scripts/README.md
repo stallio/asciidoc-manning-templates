@@ -4,6 +4,7 @@ This folder contains helpful scripts for building Manning manuscripts using Asci
 
 - `a2d.sh` : Converts Asciidoc to Manning Docbook.
 - `mpdf.sh` : Builds Manning Docbook to PDF.
+- `cofix.awk` : AWK script to (hack) fix `<calloutlist>` elements to be *inside* `<example>` elements. (This is called from `a2d.sh`.)
 
 You'll need to set $BOOK_HOME to the home directory of your book project. These scripts assume the following directory structure:
 
