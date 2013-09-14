@@ -2,11 +2,6 @@
 if !title?
 %>
 <informalexample>
-  <programlisting><%= content %></programlisting>
-</informalexample>
- <% else %>
-<example <%= @id && %( id="#{@id}") %> >
-  <title><%= title %></title>
-<programlisting><%= content %></programlisting>
-</example>
-<% end %>
+  <programlisting xml:space="preserve"><%= content %></programlisting>
+</informalexample><% else %>
+<example <%= @id && %( id="#{@id}") %> ><title><%= title %></title><programlisting xml:space="preserve"><%= content %></programlisting></example><% end %>

@@ -1,0 +1,1 @@
+<%#encoding:UTF-8%><calloutlist<%= @id && %( id="#@id") %>><%= title? ? %(<title>#{title}</title>) : nil %><%content.each do |li| %><callout arearefs="<%= li.attr 'coids' %>"><para><%= li.text %></para><% if li.blocks? %><%= li.content %><% end %></callout><% end %> </calloutlist>
