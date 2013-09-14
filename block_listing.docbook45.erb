@@ -1,21 +1,12 @@
 <%#encoding:UTF-8%><%
 if !title?
-  if (attr? 'style', 'source') && (attr? 'language')
 %>
 <informalexample>
   <programlisting><%= content %></programlisting>
 </informalexample>
  <% else %>
-<screen#{common_attrs_erb}><%= content %></screen>
-<% end
-else %>
-<example <%= @id && %( id="#{@id}") %>>
+<example <%= @id && %( id="#{@id}") %> >
   <title><%= title %></title>
-<%
-  if (attr? 'style', 'source') && (attr? 'language') %>
 <programlisting><%= content %></programlisting>
- <!-- TODO: Add colist here instead of outside -->
-<%
-  else %>
-<screen><%= content %></screen><%
-  end %></example><% end %>
+</example>
+<% end %>
