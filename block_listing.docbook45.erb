@@ -1,7 +1,7 @@
 <%#encoding:UTF-8%><%
 if !title?
 %>
-<informalexample>
+<informalexample annotations='below'>
   <programlisting xml:space="preserve"><%= content %></programlisting>
 </informalexample><% else %>
-<example <%= @id && %( id="#{@id}") %> ><title><%= title %></title><programlisting xml:space="preserve"><%= content %></programlisting></example><% end %>
+<example <%= @id && %( id="#{@id}") %> annotations='below'><title><%= title %></title><programlisting xml:space="preserve"><%= content %></programlisting></example><% end %>
