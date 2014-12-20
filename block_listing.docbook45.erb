@@ -3,19 +3,25 @@ if !title?
   if (attr? 'style', 'source') && (attr? 'language')
 %>
 <informalexample>
-  <programlisting><%= content %></programlisting>
-</informalexample>
- <% else %>
-<screen#{common_attrs_erb}><%= content %></screen>
-<% end
-else %>
-<example <%= @id && %( id="#{@id}") %>>
-  <title><%= title %></title>
-<%
-  if (attr? 'style', 'source') && (attr? 'language') %>
 <programlisting><%= content %></programlisting>
- <!-- TODO: Add colist here instead of outside -->
-<%
+</informalexample><%
+  else %>
+<screen<%= @id && %( id="#{@id}") %>><%= content %></screen><%
+  end
+else %>
+<example<%= @id && %( id="#{@id}") %>>
+<title><%= title %></title><%
+  if (attr? 'style', 'source') && (attr? 'language') %>
+<programlisting><%= content %></programlisting><%
+    idx = @parent.blocks.index(self)
+    next_block = @parent.blocks[idx + 1]
+    if !next_block.nil? && next_block.context == :colist %>
+<%= next_block.render.chomp %><%
+      # mark block as skipped so it doesn't get rendered again
+      next_block.attributes['skip'] = ''
+    end
   else %>
 <screen><%= content %></screen><%
-  end %></example><% end %>
+  end %>
+</example><%
+end %>
