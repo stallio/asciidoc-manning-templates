@@ -2,17 +2,17 @@
 if !title?
   if (attr? 'style', 'source') && (attr? 'language')
 %>
-<informalexample>
-<programlisting><%= content %></programlisting>
+<informalexample annotations="below">
+<programlisting xml:space="preserve"><%= content %></programlisting>
 </informalexample><%
   else %>
 <screen<%= @id && %( id="#{@id}") %>><%= content %></screen><%
   end
 else %>
-<example<%= @id && %( id="#{@id}") %>>
+<example<%= @id && %( id="#{@id}") %> annotations="below">
 <title><%= title %></title><%
   if (attr? 'style', 'source') && (attr? 'language') %>
-<programlisting><%= content %></programlisting><%
+<programlisting xml:space="preserve"><%= content %></programlisting><%
     idx = @parent.blocks.index(self)
     next_block = @parent.blocks[idx + 1]
     if !next_block.nil? && next_block.context == :colist %>

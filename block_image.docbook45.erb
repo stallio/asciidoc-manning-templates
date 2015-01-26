@@ -1,4 +1,4 @@
-<%#encoding:UTF-8%><%#encoding:UTF-8%><figure id="<%= id %>"><title><%= title %></title>
+<%#encoding:UTF-8%><%#encoding:UTF-8%><figure <%if id%> id="<%= id %>" <% end %> > <title><%= title %></title>
   <mediaobject>
     <imageobject>
       <imagedata fileref="<%= image_uri(attr :target) %>" />

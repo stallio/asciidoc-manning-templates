@@ -2,7 +2,7 @@
 unless attr? 'skip' %><calloutlist<%= @id && %( id="#@id") %>><%= title? ? %(
 <title>#{title}</title>) : nil %><%
   content.each do |li| %>
-<callout arearefs="<%= li.attr 'coids' %>">
+<callout arearefs="<%= "#{li.attr('coids')}#{if @attributes["callout_aliases"] then " "+ @attributes["callout_aliases"].split(" ")[index] end}"%>">
 <para><%= li.text %></para><%
     if li.blocks? %>
 <%= li.content %><%

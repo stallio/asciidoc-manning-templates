@@ -1,0 +1,10 @@
+<%#encoding:UTF-8%><orderedlist>
+  <% content.each do |li| %>
+    <listitem>
+      <para><%= li.text %></para>
+      <% if li.blocks? %>
+<%= li.content %>
+      <% end %>
+    </listitem>
+  <% end %>
+</orderedlist>
