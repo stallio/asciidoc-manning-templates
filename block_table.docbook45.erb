@@ -8,7 +8,7 @@
   <tgroup cols="<%= attr :colcount %>">
     <% @columns.each do |col| %>
     <% end %>
-    <% [:head, :foot, :body].select {|tblsec| !rows[tblsec].empty? }.each do |tblsec| %>
+    <% [:head, :body, :foot].select {|tblsec| !rows[tblsec].empty? }.each do |tblsec| %>
     <t<%= tblsec %>>
       <% @rows[tblsec].each do |row| %>
       <row>
