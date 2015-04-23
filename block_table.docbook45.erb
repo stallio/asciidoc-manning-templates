@@ -1,4 +1,4 @@
-<%#encoding:UTF-8%><<%= (tag_name = title? ? 'table' : 'informaltable') %> id="<%= id %>" >
+<%#encoding:UTF-8%><<%= (tag_name = title? ? 'table' : 'informaltable') %><%if id%> id="<%= id %>" <% end %>>
   <title><%= title %></title>
   <% if attr? :width %>
   <?dbhtml table-width="<%= attr :width %>"?>
