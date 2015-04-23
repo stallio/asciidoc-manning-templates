@@ -1,17 +1,9 @@
-<%#encoding:UTF-8%><%
-if !title?
-  if (attr? 'style', 'source') && (attr? 'language')
-%>
+<%#encoding:UTF-8%><% if !title? %>
 <informalexample annotations="below">
 <programlisting xml:space="preserve"><%= content %></programlisting>
-</informalexample><%
-  else %>
-<screen<%= @id && %( id="#{@id}") %>><%= content %></screen><%
-  end
-else %>
+</informalexample><% else %>
 <example<%= @id && %( id="#{@id}") %> annotations="below">
-<title><%= title %></title><%
-  if (attr? 'style', 'source') && (attr? 'language') %>
+<title><%= title %></title>
 <programlisting xml:space="preserve"><%= content %></programlisting><%
     idx = @parent.blocks.index(self)
     next_block = @parent.blocks[idx + 1]
@@ -19,9 +11,6 @@ else %>
 <%= next_block.render.chomp %><%
       # mark block as skipped so it doesn't get rendered again
       next_block.attributes['skip'] = ''
-    end
-  else %>
-<screen><%= content %></screen><%
-  end %>
+    end %>
 </example><%
 end %>
