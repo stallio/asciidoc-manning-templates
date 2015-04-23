@@ -1,5 +1,5 @@
 <%#encoding:UTF-8%><<%= (tag_name = title? ? 'table' : 'informaltable') %><%if id%> id="<%= id %>" <% end %>>
-  <title><%= title %></title>
+ <% if title %><title><%= title %></title><% end %>
   <% if attr? :width %>
   <?dbhtml table-width="<%= attr :width %>"?>
   <?dbfo table-width="<%= attr :width %>"?>
