@@ -1,10 +1,5 @@
-<%#encoding:UTF-8%><para><blockquote><para>
-<%= content.chomp %></para>
+<%#encoding:UTF-8%><para><blockquote><para><%= content.chomp %></para>
   <% if (attr? :attribution) || (attr? :citetitle) %>
-  <attribution>
-    <% if attr? :attribution %>
-    <%= (attr :attribution) %>
-    <% end %>
-  </attribution>
+  <attribution><% if attr? :attribution %><%= (attr :attribution) %><% end %></attribution>
   <% end %>
 </blockquote></para>
