@@ -1,4 +1,4 @@
-<%#encoding:UTF-8%><para><blockquote><para><%= content.chomp %></para>
+<%#encoding:UTF-8%><para><blockquote><%= content.chomp %>
   <% if (attr? :attribution) || (attr? :citetitle) %>
   <attribution><% if attr? :attribution %><%= (attr :attribution) %><% end %></attribution>
   <% end %>
