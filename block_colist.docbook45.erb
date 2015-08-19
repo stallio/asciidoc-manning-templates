@@ -9,5 +9,13 @@ unless attr? 'skip' %><calloutlist<%= @id && %( id="#@id") %>><%= title? ? %(
     end %>
 </callout><%
   end %>
-</calloutlist><%
+</calloutlist>
+<%
+    idx = @parent.blocks.index(self)
+prev_block = @parent.blocks[idx - 1]
+if prev_block.context == :listing && !prev_block.title? 
+    %></informalexample><% 
+elsif prev_block.context == :listing && prev_block.title? 
+%></example>
+<% end %><%
 end %>

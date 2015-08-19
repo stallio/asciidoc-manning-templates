@@ -1,4 +1,5 @@
 <%#encoding:UTF-8%>
+<% context = method 'context' %>
 <% if [:sidebar, :admonition].include? @parent.context %>
   <para>
 <% end %>
@@ -7,28 +8,21 @@
 <programlisting xml:space="preserve"><%= content %></programlisting>
 <%
     idx = @parent.blocks.index(self)
-    next_block = @parent.blocks[idx]
-    if !next_block.nil? && next_block.context == :colist 
-%>
-<%= next_block.render.chomp %>
-<%
-      # mark block as skipped so it doesn't get rendered again
-      next_block.attributes['skip'] = ''
-    end
+    next_block = @parent.blocks[idx + 1]
+unless !next_block.nil? && next_block.context == :colist 
 %>
 </informalexample>
+<% end %>
+
 <% else %>
 <example<%= @id && %( id="#{@id}") %> annotations="below">
 <title><%= title %></title>
 <programlisting xml:space="preserve"><%= content %></programlisting><%
     idx = @parent.blocks.index(self)
     next_block = @parent.blocks[idx + 1]
-    if !next_block.nil? && next_block.context == :colist %>
-<%= next_block.render.chomp %><%
-      # mark block as skipped so it doesn't get rendered again
-      next_block.attributes['skip'] = ''
-    end %>
-</example>
+unless !next_block.nil? && next_block.context == :colist %>
+</example><% end %>
+
 <% end %>
 <% if [:sidebar, :admonition].include? @parent.context %>
   </para>
