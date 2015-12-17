@@ -1,4 +1,7 @@
-<%#encoding:UTF-8%><<%= attr :name %><%= @id && %( id="#{@id}") %>>
+<%#encoding:UTF-8%>
+<% if role == "remark" %><remark><%= content.chomp %></remark>
+<% else %>
+<<%= attr :name %><%= @id && %( id="#{@id}") %>>
 <%= title? ? %(<title>#{@title}</title>) : %(<title>TITLE NEEDED</title>) %>
 <%= blocks? ? content.chomp : "<para>#{content.chomp}</para>" %>
-</<%= attr :name %>>
+</<%= attr :name %>><% end %>
