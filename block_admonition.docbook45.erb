@@ -1,7 +1,16 @@
 <%#encoding:UTF-8%>
+<%
+capname = style.capitalize
+%>
 <% if role == "remark" %><remark><%= content.chomp %></remark>
+<% elsif role == "definition" %><<%= attr :name %><%= @id && %( id="#{@id}") %>>
+<%= title? ? %(<title>#{@title}</title>) : %(<title>Definition</title>) %>
+<%= blocks? ? content.chomp : "<para>#{content.chomp}</para>" %></<%= attr :name %>>
+<% elsif capname == "Caution" %><warning <%= @id && %( id="#{@id}") %>>
+<%= title? ? %(<title>#{@title}</title>) : %(<title>Warning</title>) %>
+<%= blocks? ? content.chomp : "<para>#{content.chomp}</para>" %></warning>
 <% else %>
 <<%= attr :name %><%= @id && %( id="#{@id}") %>>
-<%= title? ? %(<title>#{@title}</title>) : %(<title>TITLE NEEDED</title>) %>
+<%= title? ? %(<title>#{@title}</title>) : %(<title>#{capname}</title>) %>
 <%= blocks? ? content.chomp : "<para>#{content.chomp}</para>" %>
 </<%= attr :name %>><% end %>
