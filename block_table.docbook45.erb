@@ -21,7 +21,7 @@
           when :asciidoc %><% cell_content = cell.content %><%
           when :verse %><% cell_content = %(<literallayout>\#{template.preserve_endlines(cell.text, self)}</literallayout>) %><%
           when :literal %><% cell_content = %(<literallayout class="monospaced">\#{template.preserve_endlines(cell.text, self)}</literallayout>) %><%
-          when :header %><% cell.content.each do |text| %><% cell_content = %(\#{cell_content\}<para><emphasis role="strong">\#{text}</emphasis></para>) %><% end %><%
+          when :header %><% cell_content = '<para><emphasis role="bold">#{cell.text}</emphasis></para>' %><%
           else %><% cell.content.each do |text| %><% cell_content = "#{cell_content}<para>#{text}</para>" %><% end %><%
         %><% end %><% end%><%= (@document.attr? 'cellbgcolor') ? %(<?dbfo bgcolor="\#{@document.attr 'cellbgcolor'}"?>) : nil %><%= cell_content %></entry>
         <% end %>
